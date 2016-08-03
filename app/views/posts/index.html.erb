@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+
+<center><%= form_tag posts_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :query, params[:query] %> <%= submit_tag "搜尋" %>
+  </p>
+<% end %>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>Uniform&nbsp;</th>
+      <th>Company&nbsp;</th>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.uniform %>&nbsp;</td>
+        <td><%= post.company %>&nbsp;</td>
+        <td><%= post.content %>&nbsp;</td>
+		<% unless user_signed_in? %>
+        <td><%= link_to 'Show', post %>&nbsp;</td>
+		<% end %>
+		<% if user_signed_in? %>
+		<td><%= link_to 'Show', post %>&nbsp;</td>
+        <td><%= link_to 'Edit', edit_post_path(post) %>&nbsp;</td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= will_paginate @posts %>
+<% if user_signed_in? %>
+<%= link_to 'New Post', new_post_path %>
+<% end %>
+</center>

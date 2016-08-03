@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uniform: MyText
+  company: MyText
+  content: MyText
+
+two:
+  uniform: MyText
+  company: MyText
+  content: MyText
